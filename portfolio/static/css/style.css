@@ -1,0 +1,333 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: roboto, helvetica, sans-serif;
+    vertical-align: baseline;
+
+}
+
+html{
+
+    font-size: 10px;
+}
+
+p{
+    line-height: 1.5;
+    text-align:justify;
+    font-size: 1.6rem;
+ }
+body{
+     background-color: white;
+}
+
+
+/*css for Header and its children*/
+header{
+    min-height: 70px;
+    /* background-color: rgb(137, 222, 233); */
+    background: linear-gradient(to right bottom, rgb(137, 222, 233), rgb(238, 83, 36));
+    padding: 20px 0px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border-bottom: 2px solid white;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+h1{
+    font-size: 2.6rem;
+}
+
+h3 {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 2.4rem;
+}
+
+#brand{
+    float: left;
+}
+
+.top-nav{
+    float: right;
+}
+
+ul{
+    list-style: none;
+}
+.top-nav li{
+    margin-right: 10px;
+    display: inline;
+}
+
+.top-nav  a{
+    font-size: 2.4rem;
+    text-decoration: none;
+    color: #000;
+}
+
+.top-nav a:hover, a.active{
+    color: white;
+}
+
+.top-nav .icon {
+    display: none;
+  }
+
+/* css for home section and its child */
+/* section{
+    margin-bottom: 20px;
+    font-size: 20px;
+} */
+
+#home{
+    position: relative;
+    background-image: url('../img/ice.jpg');
+    background-color: #CCCCCC;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    height: 600px;
+}
+
+.quote{
+    width:100%;
+    position: absolute;
+    top: 50%;
+
+}
+.quote p {
+    width: 80%;
+    margin: auto;
+    font-size: 3.2rem;
+    color: rgb(0,0,0);
+}
+
+#newsletter, #about, #services, #works, #clients{
+    padding-bottom: 20px;
+}
+ #newsletter{
+     padding-top: 40px;
+ }
+
+label, input, textarea{
+     font-size: 1.6rem;
+ }
+input, textarea{
+    width:300px;
+    padding: 12px 20px;
+}
+
+
+input[type=submit]{
+    width: 150px;
+}
+
+#contact input, textarea {
+    margin: 8px 0;
+}
+i.fas{
+    padding: 10px;
+    color:rgb(108, 229, 245);
+}
+i.fab{
+    color:white;
+}
+
+.social-media a {
+    font-size: 2rem;
+    padding: 10px;
+}
+
+.float-left{
+    float: left;
+}
+.float-right{
+    float: right;
+}
+
+iframe{
+    border:none;
+    width: 100%;
+     height:600px
+}
+
+
+/* css for service section */
+.background-color-white{
+    background-color:  rgb(137, 222, 233)
+}
+.row{
+    width: 100%;
+    display: flex;
+    justify-content:space-between ;
+    margin-bottom: 20px;
+
+}
+
+#works1{
+    display: none;
+}
+
+.card{
+    flex-basis: 32%;
+    padding: 10px;
+}
+.card img{
+    width: 90%;
+    height: 270px;
+}
+#contact .row{
+
+    align-items: top;
+    /* justify-content: center; */
+}
+#contact .card{
+    flex-basis: 50%
+}
+#services .card p, #clients .card p{
+    text-align: center;
+}
+.box-text{
+     width: 60%;
+     /* flex-basis: 60%; */
+     align-self: center;
+}
+
+h4{
+    padding: 15px 0;
+    font-size: 2rem;
+}
+
+.box-image{
+    width: 35%;
+    /* flex-basis: 35%; */
+}
+
+
+.box-image img{
+    width:100%;
+    height: 300px;
+    object-fit:contain;
+}
+
+
+footer{
+    /* min-height: 70px; */
+    background-color: rgb(137, 222, 233);
+    border-top: 1px solid black;
+    padding: 30px 0;
+}
+footer p, .social-media i.fab{
+    margin: 10px;
+}
+ footer a{
+     text-decoration: none;
+ }
+
+ /* Set the size of the div element that contains the map */
+#map {
+    margin-top: 10px;
+    height: 450px;
+    /* The height is 400 pixels */
+    width: 100%;
+    /* The width is the width of the web page */
+  }
+
+  #contact label{
+    display: block;
+  }
+
+  @media(max-width: 600px){
+
+
+    .top-nav li {
+    display: none;
+    }
+
+    .top-nav .icon {
+        display: block;
+        text-align: right;
+    }
+
+    .top-nav.responsive li {
+        display: block;
+        text-align: right;
+    }
+
+    #newsletter form input, #services .row,
+     #works .row, #clients .row, #contact .row,
+     footer .social-media, footer .container p {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    #contact input, #contact textarea{
+        width: 100%;
+      }
+
+    #newsletter h3, #newsletter form, footer .social-media, footer .container p{
+        float: none;
+
+    }
+
+    #newsletter form input, #services img{
+        margin-bottom: 10px;
+
+
+    }
+    #contact  label{
+        text-align: left;
+    }
+
+    #works{
+        display: none;
+    }
+
+    #works1{
+        display: block;
+    }
+    #works1 .row{
+        display: block;
+    }
+
+
+    #works1 .box-text, h4, #works1 .box-image{
+        margin-bottom: 10px;
+
+    }
+
+    #home{
+        height: 200px;
+    }
+
+    #home p{
+        font-size: 1.6rem;
+    }
+
+    iframe{
+        height: 300px;
+    }
+
+    .fas.fa-bars{
+        padding: 0;
+    }
+    .card{
+        padding: 0;
+    }
+    .card img, .box-text,.box-image{
+        width: 100%;
+    }
+  }
+
+*/

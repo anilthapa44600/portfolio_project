@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="#">
+    <link rel="stylesheet" href="{% static './css/style.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" 
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+          // The location of Uluru
+          27.689574478791393, 85.34588416552047
+          const SunBiDesignStudio = { lat: 27.689574478791393, lng: 85.34588416552047 };
+          // The map, centered at Uluru
+          const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 15,
+            center: SunBiDesignStudio,
+          });
+          // The marker, positioned at Uluru
+          const marker = new google.maps.Marker({
+            position: SunBiDesignStudio,
+            map: map,
+          });
+        }
+
+        function showMenu() {
+            var x = document.getElementById("fixed-nav");
+            if (x.className === "top-nav") {
+            x.className += " responsive";
+            } else {
+            x.className = "top-nav";
+            }
+        }
+
+        function hideMenu(){
+            var x = document.getElementById("fixed-nav");
+            x.className = "top-nav";
+        }
+
+      </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="brand">
+                <h1>Indreni IT Solutions</h1>
+            </div>
+            
+            <nav class="top-nav" id="fixed-nav">
+                 <span class="icon"><a href="javascript:void(0);"  onclick="showMenu()">
+                    <i class="fas fa-bars"></i>
+                  </a></span>
+                <ul>
+                    <li><a class="active" href="#home" onclick="hideMenu()">Home</a></li>
+                    <li><a href="#about" onclick="hideMenu()">About</a></li>
+                    <li><a href="#services" onclick="hideMenu()">Services</a></li>
+                    <li><a href="#works" onclick="hideMenu()">Works</a></li>
+                    <li><a href="#clients" onclick="hideMenu()">Clients</a></li>
+                    <li><a href="#contact" onclick="hideMenu()">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section id="home">
+            <div class="quote" >
+                <!-- <figure>
+                    <img src="./img/road.jpg" alt="road image" height="600px" width="100%">
+                </figure> -->
+                <p>"All our dreams can come true, if we have the courage to pursue them." - Walt Disney. </p>          
+            </div>
+        </section>
+        <section id="newsletter"  class="background-color-white">
+            <div class="container" >
+                <h3 class="float-left">Subscribe to our news letter</h3>
+                <form class="float-right"  method="post" id="subscribe-form">
+                    {% csrf_token %}
+                    <input name = "email" id = "subscribe_email" type="email" required placeholder="Enter Email">
+<!--                    <input type="button" onclick="subscribe()" value="Subscribe">-->
+<!--                    <input type="hidden" name="form_name" value="subscribe_form">-->
+                    <input type="submit" value="Subscribe">
+                </form>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h3>Who are we?</h3>
+                {{ about.description|linebreaks}}
+            
+               
+               
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <h3>Few words from our Director</h3>
+            </div>
+            <div>
+<!--                <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY?mute=1"></iframe>-->
+            <iframe src="https://www.youtube.com/embed/7J7BSxgby2g" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+             </div>
+        </section>
+        <section id="services" class="background-color-white"> 
+            <div class="container" >
+                <h3>Our Services</h3>
+                {% for service in services %}
+                    {% if forloop.first %}<div class = "row"> {% endif %}
+                        <div class="card">
+                         <figure>
+                                <img src="{{ service.image.url }}" alt="road image" height="auto" width="100%">
+                         </figure>
+                            <p>{{ service.title }}</p>
+                       </div>
+                    {% if forloop.counter|divisibleby:3 %}</div> <div class="row"> {% endif %}
+                {% if forloop.last%}</div>{% endif %}
+                {% endfor %}
+            </div>
+        </section>
+        <section id="works">
+            <div class="container">
+                    <h3>Projects we have done</h3>
+                    {% for project in projects %}
+                        {% if forloop.counter|divisibleby:2 %}
+                            <div class = "row">
+                                <div class="box-image">
+                                    <figure>
+                                        <img src="{{project.image.url}}" alt="road image" width="100%">
+                                    </figure>
+                                </div>
+                                <div class="box-text">
+                                    <h4>{{project.title}}</h4>
+                                    <p>{{project.description}}
+                                        </p>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class = "row" >
+                                <div class="box-text">
+                                    <h4>{{project.title}}</h4>
+                                    <p>{{project.description}}
+                                        </p>
+                                </div>
+                                <div class="box-image">
+                                    <figure>
+                                        <img src="{{ project.image.url }}" alt="road image" width="100%">
+                                    </figure>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+            </div>
+        </section>
+        <section id="works1">
+            <div class="container">
+                <h3>Projects we have done</h3>
+                {% for project in projects %}
+                    <div class = "row" >
+                    <h4>{{project.title}}</h4>
+                    <div class="box-image">
+                        <figure>
+                            <img src="{{project.image.url }}" alt="road image" width="100%">
+                        </figure>
+                    </div>
+                    <div class="box-text">
+
+                        <p>{{project.description}}
+                            </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        <section id="clients"  class="background-color-white">
+            <div class="container">
+                <h3>Our Clients</h3>
+                {% for client in clients %}
+                    {% if forloop.first %}<div class = "row">{% endif %}
+                        <div class="card">
+                            <figure>
+                                <img src="{{ client.image.url }}" alt="road image" height="auto" width="100%">
+                            </figure>
+                            <p>{{client.title}}</p>
+                        </div>
+                    {% if forloop.counter|divisibleby:3 %}</div> <div class="row"> {% endif %}
+                    {% if forloop.last%}</div>{% endif %}
+                {% endfor %}
+                
+            </div>
+        </section>
+        <section id="contact">
+
+            <div class="container">
+                <h3>Get in touch with us</h3>
+                <div class="row">
+                    <div class="card" >
+                        <form  method="post" id="message-form">
+                            {% csrf_token %}
+                            <label for="name">Name</label><br>
+                            <input type="text" id = "name" name="name"><br>
+                            <label for="email">Email</label><br>
+                            <input type="email" id="email" name="email"><br>
+                            <label for="phone">Contact Number</label><br>
+                            <input type="tel" id="phone" name="phone"><br>
+                            <label for="message">Message</label><br>
+                            <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                            <br>
+                            <input type="hidden" name="form_name" value="message_form">
+                            <input type="submit" value="SUBMIT">
+                        </form>
+                    </div>
+                    <div class="card">
+                        <p><i class="fas fa-envelope fa-lg"></i>email: {{contact.email}}</p>
+                        <p><i class="fas fa-phone-alt fa-lg"></i>phone: {{contact.phone}}</p>
+                        <p><i class="fas fa-map-marker-alt fa-lg"></i>address: {{contact.address}}</p>
+                        <div id="map">
+<!--                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.8937439958286!2d85.34368501502853!3d27.68967878279919!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1992001b83b5%3A0x2e0b3bd002413f02!2sSunBi%20Design%20Studio!5e0!3m2!1sen!2snp!4v1614058358600!5m2!1sen!2snp"-->
+<!--                                    allowfullscreen="" loading="lazy"></iframe>-->
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+           <div class="social-media float-left">
+                <a href="#"> <i class="fab fa-facebook-f fa-lg"></i> </a>
+                <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#"><i class="fab fa-telegram-plane fa-lg"></i></a>
+                <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
+                <a href="#"><i class="fab fa-viber fa-lg"></i></a>
+            </div>
+
+            <p class="float-right">All right reserve &copy 2021</p>
+        </div>
+    </footer>
+</body>
+<script>
+        $(document).on('submit', '#subscribe-form', function(event){
+            event.preventDefault();
+            var subscribe_form = $('#subscribe-form');
+            $.ajax({
+                url: "{% url 'subscribe' %}",
+                type: 'POST',
+                data: subscribe_form.serialize(),
+                dataType: 'json',
+                header: { 'X-CSRFToken': '{% csrf_token %}' },
+                success: function(data){
+                    alert(data['message'])
+                },
+                failure: function(err){
+                    alert("An error occurred.")
+                }
+            });
+        });
+        $(document).on('submit', '#message-form', function(event){
+            event.preventDefault();
+            var message_form = $('#message-form');
+            $.ajax({
+                url: "{% url 'message' %}",
+                type: 'POST',
+                data: message_form.serialize(),
+                dataType: 'json',
+                header: { 'X-CSRFToken': '{% csrf_token %}' },
+                success: function(data){
+
+                    alert(data['message'])
+                },
+                failure: function(err){
+                    alert("An error occurred.")
+                }
+            });
+        });
+    </script>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1B-60RlFyuoYRiKtBJFoWKnjPpBLmnTw&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+</html>
