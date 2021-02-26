@@ -11,6 +11,7 @@
     integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+        let active_link = "home-link";
         // Initialize and add the map
         function initMap() {
           // The location of Uluru
@@ -29,7 +30,7 @@
         }
 
         function showMenu() {
-            var x = document.getElementById("fixed-nav");
+            let x = document.getElementById("fixed-nav");
             if (x.className === "top-nav") {
             x.className += " responsive";
             } else {
@@ -37,9 +38,12 @@
             }
         }
 
-        function hideMenu(){
-            var x = document.getElementById("fixed-nav");
+        function hideMenu(pressed_link){
+            let x = document.getElementById("fixed-nav");
             x.className = "top-nav";
+            document.getElementById(active_link).classList.remove("active");
+            document.getElementById(pressed_link).classList.add("active");
+            active_link = pressed_link;
         }
 
       </script>
@@ -56,12 +60,12 @@
                     <i class="fas fa-bars"></i>
                   </a></span>
                 <ul>
-                    <li><a class="active" href="#home" onclick="hideMenu()">Home</a></li>
-                    <li><a href="#about" onclick="hideMenu()">About</a></li>
-                    <li><a href="#services" onclick="hideMenu()">Services</a></li>
-                    <li><a href="#works" onclick="hideMenu()">Works</a></li>
-                    <li><a href="#clients" onclick="hideMenu()">Clients</a></li>
-                    <li><a href="#contact" onclick="hideMenu()">Contact</a></li>
+                    <li><a id="home-link" class="active" href="#home" onclick="hideMenu('home-link')">Home</a></li>
+                    <li><a id="about-link"  href="#about" onclick="hideMenu('about-link')">About</a></li>
+                    <li><a id="services-link"  href="#services" onclick="hideMenu('services-link')">Services</a></li>
+                    <li><a id="works-link"  href="#works" onclick="hideMenu('works-link')">Works</a></li>
+                    <li><a id="clients-link"  href="#clients" onclick="hideMenu('clients-link')">Clients</a></li>
+                    <li><a id="contact-link"  href="#contact" onclick="hideMenu('contact-link')">Contact</a></li>
                 </ul>
             </nav>
         </div>
