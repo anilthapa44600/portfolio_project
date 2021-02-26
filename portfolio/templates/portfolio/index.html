@@ -12,22 +12,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         let active_link = "home-link";
-        // Initialize and add the map
-        function initMap() {
-          // The location of Uluru
-          27.689574478791393, 85.34588416552047
-          const SunBiDesignStudio = { lat: 27.689574478791393, lng: 85.34588416552047 };
-          // The map, centered at Uluru
-          const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 15,
-            center: SunBiDesignStudio,
-          });
-          // The marker, positioned at Uluru
-          const marker = new google.maps.Marker({
-            position: SunBiDesignStudio,
-            map: map,
-          });
-        }
 
         function showMenu() {
             let x = document.getElementById("fixed-nav");
@@ -223,10 +207,9 @@
                         <p><i class="fas fa-envelope fa-lg"></i>email: {{contact.email}}</p>
                         <p><i class="fas fa-phone-alt fa-lg"></i>phone: {{contact.phone}}</p>
                         <p><i class="fas fa-map-marker-alt fa-lg"></i>address: {{contact.address}}</p>
-                        <div id="map">
-<!--                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.8937439958286!2d85.34368501502853!3d27.68967878279919!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1992001b83b5%3A0x2e0b3bd002413f02!2sSunBi%20Design%20Studio!5e0!3m2!1sen!2snp!4v1614058358600!5m2!1sen!2snp"-->
-<!--                                    allowfullscreen="" loading="lazy"></iframe>-->
-                        </div>
+                        <iframe id = "map"  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.8937439958286!2d85.34368501502853!3d27.68967878279919!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1992001b83b5%3A0x2e0b3bd002413f02!2sSunBi%20Design%20Studio!5e0!3m2!1sen!2snp!4v1614058358600!5m2!1sen!2snp"
+                                    allowfullscreen="" loading="lazy"></iframe>
+
 
                     </div>
 
@@ -286,9 +269,4 @@
         });
     </script>
 
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1B-60RlFyuoYRiKtBJFoWKnjPpBLmnTw&callback=initMap&libraries=&v=weekly"
-      async
-    ></script>
 </html>
