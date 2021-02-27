@@ -148,17 +148,15 @@ header{
     height: 600px;
 }
 
-.quote{
-    width:100%;
+#home .container{
     position: absolute;
     top: 50%;
+    left: 10%;
 
 }
-.quote p {
-    width: 80%;
-    margin: auto;
+#home p {
     font-size: 3.2rem;
-    color: rgb(0,0,0);
+    text-align: center;
 }
 
 /* css for home section and its children ends */
