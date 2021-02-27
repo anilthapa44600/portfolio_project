@@ -28,6 +28,11 @@ body{
     overflow: hidden;
 }
 
+header .container{
+    display:flex;
+    justify-content: space-between;
+}
+
 h1{
     font-size: 2.6rem;
 }
@@ -111,14 +116,6 @@ header{
     top: 0;
     z-index: 1;
     border-bottom: 2px solid white;
-}
-
-#brand{
-    float: left;
-}
-
-.top-nav{
-    float: right;
 }
 
 .top-nav li{
