@@ -67,8 +67,8 @@
         </section>
         <section id="newsletter"  class="background-color-white">
             <div class="container" >
-                <h3 class="float-left">Subscribe to our news letter</h3>
-                <form class="float-right"  method="post" id="subscribe-form">
+                <h3>Subscribe to our news letter</h3>
+                <form  method="post" id="subscribe-form">
                     {% csrf_token %}
                     <input name = "email" id = "subscribe_email" type="email" required placeholder="Enter Email">
 <!--                    <input type="button" onclick="subscribe()" value="Subscribe">-->

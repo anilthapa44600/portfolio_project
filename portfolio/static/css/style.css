@@ -28,7 +28,7 @@ body{
     overflow: hidden;
 }
 
-header .container{
+header .container, #newsletter .container{
     display:flex;
     justify-content: space-between;
 }
@@ -83,13 +83,6 @@ p{
     height: 270px;
 }
 
-.float-left{
-    float: left;
-}
-
-.float-right{
-    float: right;
-}
 
 label, input, textarea{
      font-size: 1.6rem;
@@ -295,6 +288,9 @@ iframe{
         text-align: center;
     }
 
+    #newsletter .container{
+        display: block;
+    }
     .card{
         padding: 0;
     }
@@ -339,9 +335,6 @@ iframe{
     /* css for home section and its children ends */
 
     /* css for newsletter section and its children starts */
-    #newsletter h3, #newsletter form, footer .social-media, footer .container p{
-        float: none;
-    }
 
     #newsletter form input, #services img{
         margin-bottom: 10px;
