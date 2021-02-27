@@ -24,7 +24,7 @@
         function scrollToView(pressed_link, view_id){
             let x = document.getElementById("fixed-nav");
             x.className = "top-nav";
-            
+
             //change color of pressed link
             document.getElementById(active_link).classList.remove("active");
             document.getElementById(pressed_link).classList.add("active");
@@ -115,7 +115,8 @@
         </section>
         <section id="works">
             <div class="container">
-                    <h3>Projects we have done</h3>
+                <h3>Projects we have done</h3>
+                <div class="layout-lg">
                     {% for project in projects %}
                         {% if forloop.counter|divisibleby:2 %}
                             <div class = "row">
@@ -145,26 +146,24 @@
                             </div>
                         {% endif %}
                     {% endfor %}
-            </div>
-        </section>
-        <section id="works1">
-            <div class="container">
-                <h3>Projects we have done</h3>
-                {% for project in projects %}
-                    <div class = "row" >
-                    <h4>{{project.title}}</h4>
-                    <div class="box-image">
-                        <figure>
-                            <img src="{{project.image.url }}" alt="road image" width="100%">
-                        </figure>
-                    </div>
-                    <div class="box-text">
-
-                        <p>{{project.description}}
-                            </p>
-                    </div>
                 </div>
-                {% endfor %}
+                <div class="layout-sm">
+                    {% for project in projects %}
+                        <div class = "row" >
+                            <h4>{{project.title}}</h4>
+                            <div class="box-image">
+                                <figure>
+                                    <img src="{{project.image.url }}" alt="road image" width="100%">
+                                </figure>
+                            </div>
+                            <div class="box-text">
+
+                                <p>{{project.description}}
+                                    </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </section>
         <section id="clients"  class="background-color-white">

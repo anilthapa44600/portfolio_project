@@ -213,16 +213,11 @@ input[type=submit]{
     object-fit:contain;
 }
 
-/* css for works section and its children ends */
-
-
-/* css for works1 section and its children starts */
-
-#works1{
+.layout-sm{
     display: none;
 }
 
-/* css for works1 section and its children ends */
+/* css for works section and its children ends */
 
 
 
@@ -357,25 +352,19 @@ iframe{
     /* css for newsletter section and its children ends */
 
     /* css for works section and its children starts */
-    #works{
+    .layout-lg{
         display: none;
     }
-    /* css for works section and its children starts */
 
-    /* css for work1 section and its children starts */
-    #works1{
+    .layout-sm{
         display: block;
     }
 
-    #works1 .row{
-        display: block;
-    }
-
-    #works1 .box-text, h4, #works1 .box-image{
+    .layout-sm .box-text, h4, .layout-sm .box-image{
     margin-bottom: 10px;
 
     }
-    /* css for work1 section and its children starts */
+    /* css for works section and its children starts */
 
 
     /* css for contact section and its children starts */
