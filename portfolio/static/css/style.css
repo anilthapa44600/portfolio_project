@@ -136,6 +136,10 @@ header{
     color: white;
 }
 
+.top-nav a:hover{
+    cursor:pointer;
+}
+
 .top-nav .icon {
     display: none;
   }

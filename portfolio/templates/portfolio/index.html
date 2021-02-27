@@ -12,22 +12,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         let active_link = "home-link";
-
         function showMenu() {
             let x = document.getElementById("fixed-nav");
             if (x.className === "top-nav") {
-            x.className += " responsive";
+                x.className += " responsive";
             } else {
-            x.className = "top-nav";
+                x.className = "top-nav";
             }
         }
 
-        function hideMenu(pressed_link){
+        function scrollToView(pressed_link, view_id){
             let x = document.getElementById("fixed-nav");
             x.className = "top-nav";
+            
+            //change color of pressed link
             document.getElementById(active_link).classList.remove("active");
             document.getElementById(pressed_link).classList.add("active");
             active_link = pressed_link;
+            document.getElementById(view_id).scrollIntoView()
         }
 
       </script>
@@ -44,12 +46,12 @@
                     <i class="fas fa-bars"></i>
                   </a></span>
                 <ul>
-                    <li><a id="home-link" class="active" href="#home" onclick="hideMenu('home-link')">Home</a></li>
-                    <li><a id="about-link"  href="#about" onclick="hideMenu('about-link')">About</a></li>
-                    <li><a id="services-link"  href="#services" onclick="hideMenu('services-link')">Services</a></li>
-                    <li><a id="works-link"  href="#works" onclick="hideMenu('works-link')">Works</a></li>
-                    <li><a id="clients-link"  href="#clients" onclick="hideMenu('clients-link')">Clients</a></li>
-                    <li><a id="contact-link"  href="#contact" onclick="hideMenu('contact-link')">Contact</a></li>
+                    <li><a id="home-link" class="active"  onclick="scrollToView('home-link','home')">Home</a></li>
+                    <li><a id="about-link"      onclick="scrollToView('about-link', 'about')">About</a></li>
+                    <li><a id="services-link"  onclick="scrollToView('services-link','services')">Services</a></li>
+                    <li><a id="works-link"      onclick="scrollToView('works-link', 'works')">Works</a></li>
+                    <li><a id="clients-link"   onclick="scrollToView('clients-link','clients')">Clients</a></li>
+                    <li><a id="contact-link"   onclick="scrollToView('contact-link','contact')">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -182,6 +184,8 @@
                 
             </div>
         </section>
+
+
         <section id="contact">
 
             <div class="container">
