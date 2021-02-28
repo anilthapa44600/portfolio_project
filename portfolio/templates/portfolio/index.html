@@ -7,9 +7,10 @@
     <title>Document</title>
     <link rel="icon" href="#">
     <link rel="stylesheet" href="{% static './css/style.css' %}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
     integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
     <script>
         let active_link = "home-link";
         function showMenu() {
@@ -169,18 +170,26 @@
         <section id="clients"  class="background-color-white">
             <div class="container">
                 <h3>Our Clients</h3>
-                {% for client in clients %}
-                    {% if forloop.first %}<div class = "row">{% endif %}
-                        <div class="card">
+                <div class="slick-slider autoplay">
+<!--                    {% for client in clients %}-->
+<!--                        {% if forloop.first %}<div class = "row">{% endif %}-->
+<!--                            <div class="card">-->
+<!--                                <figure>-->
+<!--                                    <img src="{{ client.image.url }}" alt="road image" height="auto" width="100%">-->
+<!--                                </figure>-->
+<!--                                <p>{{client.title}}</p>-->
+<!--                            </div>-->
+<!--                        {% if forloop.counter|divisibleby:3 %}</div> <div class="row"> {% endif %}-->
+<!--                        {% if forloop.last%}</div>{% endif %}-->
+<!--                    {% endfor %}-->
+                    {% for client in clients %}
+                        <div class="item">
                             <figure>
-                                <img src="{{ client.image.url }}" alt="road image" height="auto" width="100%">
+                                <img src="{{ client.image.url }}" alt="{{ client.title }}"  >
                             </figure>
-                            <p>{{client.title}}</p>
                         </div>
-                    {% if forloop.counter|divisibleby:3 %}</div> <div class="row"> {% endif %}
-                    {% if forloop.last%}</div>{% endif %}
-                {% endfor %}
-                
+                    {% endfor %}
+                </div>
             </div>
         </section>
 
@@ -222,7 +231,7 @@
     </main>
     <footer>
         <div class="container">
-           <div class="social-media float-left">
+           <div class="social-media">
                 <a href="#"> <i class="fab fa-facebook-f fa-lg"></i> </a>
                 <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="#"><i class="fab fa-telegram-plane fa-lg"></i></a>
@@ -230,9 +239,27 @@
                 <a href="#"><i class="fab fa-viber fa-lg"></i></a>
             </div>
 
-            <p class="float-right">All right reserve &copy 2021</p>
+            <p>All right reserve &copy 2021</p>
         </div>
     </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.autoplay').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 750,
+                arrows: false,
+                pauseOnFocus: false,
+                accessibility:false,
+                draggable: false,
+                pauseOnHover: false,
+            });
+          });
+    </script>
 </body>
 <script>
         $(document).on('submit', '#subscribe-form', function(event){
