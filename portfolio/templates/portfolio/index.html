@@ -48,7 +48,7 @@
                 <h3>Subscribe to our news letter</h3>
                 <form  method="post" id="subscribe-form">
                     {% csrf_token %}
-                    <input name = "email" id = "subscribe_email" type="email" required placeholder="Enter Email">
+                    <input name = "email" id = "subscribe-email" type="email" required placeholder="Enter Email">
 <!--                    <input type="button" onclick="subscribe()" value="Subscribe">-->
 <!--                    <input type="hidden" name="form_name" value="subscribe_form">-->
                     <input type="button" value="Subscribe" onclick="callAjax('#subscribe-form')">
@@ -189,7 +189,7 @@
                             <textarea name="message" id="message" cols="30" rows="10"></textarea>
                             <br>
                             <input type="hidden" name="form_name" value="message_form">
-                            <input type="submit" value="SUBMIT">
+                            <input type="button" value="SUBMIT" onclick="callAjax('#message-form')">
                         </form>
                     </div>
                     <div class="card">
@@ -224,114 +224,5 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="{% static './js/jquery.toast.js' %}"></script>
     <script type="text/javascript" src="{% static './js/app.js' %}"></script>
-    <script type="text/javascript">
-        //jquery for carousel
-        $(document).ready(function(){
-            $('.autoplay').slick({
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 750,
-                arrows: false,
-                pauseOnFocus: false,
-                accessibility:false,
-                draggable: false,
-                pauseOnHover: false,
-                responsive:[
-                {
-                    breakpoint: 650,
-                    settings: {
-                        slidesToShow: 2,
-                        draggable: false,
-                    }
-                }
-                ],
-            });
-         });
-
-        //ajax code for submitting form data to server
-         function callAjax(id){
-
-            //event.preventDefault();
-            let form_element = $(id);
-            let url_pattern = "";
-            if (id === "#subscribe-form"){
-                url_pattern = "{% url 'subscribe' %}";
-            }
-            elseif (id === "#subscribe-form"){
-                url_pattern = "{% url 'subscribe' %}";
-            }
-
-            $.ajax({
-                url: url_pattern,
-                type: 'POST',
-                data: form_element.serialize(),
-                dataType: 'json',
-                header: { 'X-CSRFToken': '{% csrf_token %}' },
-                success: function(data){
-
-                    if()
-                   let toastMessage = "<p style:'font-size:24px;'>You are subscribed</p>";
-                   let toastIcon = "success";
-                   if (data['success'] === 'false'){
-                        toastMessage = "<p style:'font-size:24px;'>You are not subscribed.</p>>";
-                        toastIcon = "error";
-                   }
-                   console.log(toastMessage);
-                   showToast(toastMessage, toastIcon);
-
-                },
-                failure: function(err){
-                    console.log("An error occurred.");
-                    showToast("<p style:'font-size:24px;'>An error occurred.</p>", "error");
-                }
-            });
-         }
-
-
-
-        $(document).on('submit', '#message-form', function(event){
-            event.preventDefault();
-            var message_form = $('#message-form');
-            $.ajax({
-                url: "{% url 'message' %}",
-                type: 'POST',
-                data: message_form.serialize(),
-                dataType: 'json',
-                header: { 'X-CSRFToken': '{% csrf_token %}' },
-                success: function(data){
-
-                   let toastMessage = "<p style:'font-size:24px;'>You'll be contacted soon.</p>";
-                   let toastIcon = "success";
-                   if (data['success'] === 'false'){
-                        toastMessage = "<p style:'font-size:24px;'>Something went wrong.</p>>";
-                        toastIcon = "error";
-                   }
-                   console.log(toastMessage);
-                   showToast(toastMessage, toastIcon);
-
-                },
-                failure: function(err){
-                    console.log("An error occurred.");
-                    showToast("<p style:'font-size:24px;'>An error occurred.</p>", "error");
-                }
-            });
-        });
-
-        function showToast(toastMessage, toastIcon){
-            $.toast({
-                        text: toastMessage, // Text that is to be shown in the toast
-                        icon: toastIcon, // Type of toast icon
-                        showHideTransition: 'fade', // fade, slide or plain
-                        allowToastClose: true, // Boolean value true or false
-                        hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
-                        stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
-                        position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
-                        //textAlign: 'left',  // Text alignment i.e. left, right or center
-                        loader: false,  // Whether to show loader or not. True by default
-                        //loaderBg: '#9EC600',  // Background color of the toast loader
-                    });
-        }
-    </script>
 </body>
 </html>
