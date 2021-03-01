@@ -52,9 +52,9 @@ def subscribe_view(request):
         form = SubscriberForm(request.POST)
         if form.is_valid():
             form.save()
-            return JsonResponse({'message': 'You are subscribed!!!!!!!'})
+            return JsonResponse({'success': 'true'})
         else:
-            return JsonResponse({'message': 'You are not subscribed!!!!!!!'})
+            return JsonResponse({'success': 'false'})
     else:
         return HttpResponse("<h1>Your request can not be supported. STATUS CODE = 404</h1>")
 
@@ -66,8 +66,8 @@ def message_view(request):
         form = MessageForm(request.POST)
         if form.is_valid():
             s = form.save()
-            return JsonResponse({'message': 'We received your message!'})
+            return JsonResponse({'success': 'true'})
         else:
-            return JsonResponse({'message': 'Something went wrong. Try again later.'})
+            return JsonResponse({'success': 'false'})
     else:
         return HttpResponse("<h1>Your request can not be supported. STATUS CODE = 404</h1>")
