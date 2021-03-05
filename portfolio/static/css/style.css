@@ -103,7 +103,7 @@ i.fas{
 header{
     min-height: 70px;
     /* background-color: rgb(137, 222, 233); */
-    background: linear-gradient(to right bottom, rgb(137, 222, 233), rgb(238, 83, 36));
+    background: linear-gradient(to right , #60B5E6, #1575AD);
     padding: 20px 0px;
     position: sticky;
     top: 0;

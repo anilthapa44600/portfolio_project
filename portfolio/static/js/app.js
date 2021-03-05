@@ -81,7 +81,7 @@ function callAjax(id){
                toastMessage = "<p style:'font-size:24px;'>You'll be contacted soon.</p>";
                toastIcon = "success";
                if (data['success'] === 'false'){
-                    toastMessage = "<p style:'font-size:24px;'>Something went wrong.</p>>";
+                    toastMessage = "<p style:'font-size:24px;'>Something went wrong.</p>";
                     toastIcon = "error";
                }
                emptyInputField('#name');
