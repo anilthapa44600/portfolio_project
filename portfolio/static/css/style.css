@@ -58,8 +58,8 @@ p{
     list-style: none;
 }
 
-.background-color-white{
-    background-color:  rgb(137, 222, 233)
+.background-color-blue{
+    background-color:  #60B5E6;
 }
 
 #newsletter, #about, #services, #works, #clients{
@@ -94,7 +94,7 @@ input, textarea{
 
 i.fas{
     padding: 10px;
-    color:rgb(108, 229, 245);
+    color:#1575AD;
 }
 
 /* global css end */
@@ -254,7 +254,7 @@ input[type=submit]{
 
 footer{
     /* min-height: 70px; */
-    background-color: rgb(137, 222, 233);
+    background-color: #1575AD;
     border-top: 1px solid black;
     padding: 30px 0;
 }
@@ -339,6 +339,7 @@ iframe{
 
     .fas.fa-bars{
         padding: 0;
+        color: white;
     }
 
     /* css for home section and its children ends */

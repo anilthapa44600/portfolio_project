@@ -76,7 +76,8 @@ function callAjax(id){
                     toastIcon = "error";
                 }
 
-                emptyInputField('#subscribe-email');
+
+                emptyInputField(['#subscribe-email']);
             }else if(id === "#message-form"){
                toastMessage = "<p style:'font-size:24px;'>You'll be contacted soon.</p>";
                toastIcon = "success";
@@ -84,10 +85,9 @@ function callAjax(id){
                     toastMessage = "<p style:'font-size:24px;'>Something went wrong.</p>";
                     toastIcon = "error";
                }
-               emptyInputField('#name');
-               emptyInputField('#email');
-               emptyInputField('#phone');
-               emptyInputField('#message');
+
+               emptyInputField(['#name', '#email', '#phone', '#message']);
+
             }
             console.log(toastMessage);
             showToast(toastMessage, toastIcon);
@@ -100,8 +100,10 @@ function callAjax(id){
     });
 }
 
-function emptyInputField(id){
-    $(id).val("");
+function emptyInputField(id_list){
+    for( let id of id_list){
+        $(id).val("");
+    }
 }
 
 
