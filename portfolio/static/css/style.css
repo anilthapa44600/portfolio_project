@@ -119,11 +119,11 @@ header{
 .top-nav  a{
     font-size: 2.4rem;
     text-decoration: none;
-    color: #000;
 }
 
 .top-nav a:hover, a.active{
     color: white;
+    font-weight: 900;
 }
 
 .top-nav a:hover{
