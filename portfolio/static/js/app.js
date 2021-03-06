@@ -66,31 +66,16 @@ function callAjax(id){
         dataType: 'json',
         header: { 'X-CSRFToken': '{% csrf_token %}' },
         success: function(data){
-            let toastMessage ="";
-            let toastIcon = "";
+
             if( id === "#subscribe-form"){
-                toastMessage = "<p style:'font-size:24px;'>You are subscribed</p>";
-                toastIcon = "success";
-                if (data['success'] === 'false'){
-                    toastMessage = "<p style:'font-size:24px;'>You are not subscribed.</p>>";
-                    toastIcon = "error";
-                }
-
-
-                emptyInputField(['#subscribe-email']);
+                clearInputField(['#subscribe-email']);
             }else if(id === "#message-form"){
-               toastMessage = "<p style:'font-size:24px;'>You'll be contacted soon.</p>";
-               toastIcon = "success";
-               if (data['success'] === 'false'){
-                    toastMessage = "<p style:'font-size:24px;'>Something went wrong.</p>";
-                    toastIcon = "error";
-               }
-
-               emptyInputField(['#name', '#email', '#phone', '#message']);
-
+               clearInputField(['#name', '#email', '#phone', '#message']);
             }
-            console.log(toastMessage);
-            showToast(toastMessage, toastIcon);
+            parameterList = getToastParameter(data);
+            console.log(parameterList[0]);
+
+            showToast(parameterList[0], parameterList[1]);
 
         },
         failure: function(err){
@@ -100,7 +85,17 @@ function callAjax(id){
     });
 }
 
-function emptyInputField(id_list){
+function getToastParameter(data){
+    toastMessage = "<p style:'font-size:24px;'>"+ data['message']+"</p>";
+    toastIcon = "success";
+    if (data['success'] === 'false'){
+//        toastMessage = "<p style:'font-size:24px;'>"+ data['message']+"</p>";
+        toastIcon = "error";
+    }
+    return [toastMessage, toastIcon];
+}
+
+function clearInputField(id_list){
     for( let id of id_list){
         $(id).val("");
     }
