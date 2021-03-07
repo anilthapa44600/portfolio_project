@@ -36,6 +36,7 @@ def index(request):
              'contact': ContactDetail.objects.last()}
 
     return render(request, 'portfolio/index.html', context)
+    # return render(request, 'portfolio/subscribe.html', context)
 
 
 # def save_form(request, model_form):
@@ -53,6 +54,7 @@ def subscribe_view(request):
         if form.is_valid():
             if not Subscriber.objects.filter(email=request.POST['email']).exists():
                 form.save()
+                send_mail_to_subscriber(form)
                 return JsonResponse({'success': 'true', 'message': 'You are subscribed'})
             else:
                 return JsonResponse({'success': "false", 'message': 'Already subscribed'})
@@ -74,3 +76,15 @@ def message_view(request):
             return JsonResponse({'success': 'false', 'message': "Invalid Input."})
     else:
         return HttpResponse("<h1>Your request can not be supported. STATUS CODE = 404</h1>")
+
+
+def send_mail_to_subscriber(form):
+    subject = "Regarding newsletter"
+    text_content = "Thanks for subscribing"
+    temp = get_template("portfolio/subscribe.html")
+    html_content = temp.render()
+    print("html content: ")
+    print(html_content);
+    msg = EmailMultiAlternatives(subject, text_content, EMAIL_HOST_USER, [form.cleaned_data['email']])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
