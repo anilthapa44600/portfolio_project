@@ -46,10 +46,20 @@ $(document).ready(function(){
  });
 
 
+document.getElementById('subscribe-form').addEventListener("submit", function(event){
+    console.log("submitting form data");
+    event.preventDefault();
+    callAjax("#subscribe-form");
+});
+
+document.getElementById('message-form').addEventListener("submit", function(event){
+    console.log("submitting form data");
+    event.preventDefault();
+    callAjax("#message-form");
+});
 //ajax code for submitting form data to server
 function callAjax(id){
 
-    //event.preventDefault();
     let form_element = $(id);
     let url_pattern = "";
     if (id === "#subscribe-form"){
