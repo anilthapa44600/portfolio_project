@@ -7,3 +7,5 @@ Form data is sent to backend using AJAX method provided by JQuery.
 Auto-sliding carousel is done by Slick.js.
 Toast messages are displayed by external Jquery toast plugin.
 All the icons and images used in this project is downloaded from internet, so before using them in your real project check for copyright.
+Visit the link https://portfolio-it.herokuapp.com/ to have a look on the project.
+
