@@ -10,22 +10,6 @@ from .models import ContactDetail, Service, Project, Client, About, Subscriber
 
 
 # Create your views here.
-# class IndexView(TemplateView):
-#     template_name = 'portfolio/index.html'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['contact'] = ContactDetail.objects.last()
-#         context['services'] = Service.objects.all()
-#         context['projects'] = Project.objects.all()
-#         context['clients'] = Client.objects.all()
-#         context['about'] = About.objects.last()
-#         return context
-#     def get(self, request, *args, **kwargs):
-#         pass
-#
-#     def post(self):
-#         pass
 
 def index(request):
 
@@ -36,20 +20,11 @@ def index(request):
              'contact': ContactDetail.objects.last()}
 
     return render(request, 'portfolio/index.html', context)
-    # return render(request, 'portfolio/subscribe.html', context)
-
-
-# def save_form(request, model_form):
-#     form = model_form(request.POST)
-#     if form.is_valid():
-#         form.save()
-#         messages.success(request, "You are subscribed")
 
 
 def subscribe_view(request):
 
     if request.method == 'POST' and request.is_ajax():
-        # save_form(request, SubscriberForm)
         form = SubscriberForm(request.POST)
         if form.is_valid():
             if not Subscriber.objects.filter(email=request.POST['email']).exists():
@@ -67,7 +42,6 @@ def subscribe_view(request):
 def message_view(request):
 
     if request.method == 'POST' and request.is_ajax():
-        # save_form(request,MessageForm)
         form = MessageForm(request.POST)
         if form.is_valid():
             s = form.save()
@@ -83,8 +57,6 @@ def send_mail_to_subscriber(form):
     text_content = "Thanks for subscribing"
     temp = get_template("portfolio/subscribe.html")
     html_content = temp.render()
-    print("html content: ")
-    print(html_content);
     msg = EmailMultiAlternatives(subject, text_content, EMAIL_HOST_USER, [form.cleaned_data['email']])
     msg.attach_alternative(html_content, "text/html")
     msg.send()

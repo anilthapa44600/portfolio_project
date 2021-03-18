@@ -37,20 +37,14 @@
     <main>
         <section id="home">
             <div class="container" >
-                <!-- <figure>
-                    <img src="./img/road.jpg" alt="road image" height="600px" width="100%">
-                </figure> -->
                 <p>"All our dreams can come true, if we have the courage to pursue them." - Walt Disney. </p>          
             </div>
         </section>
         <section id="newsletter"  class="background-color-blue">
             <div class="container" >
                 <h3>Subscribe to our news letter</h3>
-                <form  method="post" id="subscribe-form">
-                    {% csrf_token %}
+                <form id="subscribe-form">
                     <input name = "email" id = "subscribe-email" type="email" required placeholder="Enter Email">
-<!--                    <input type="button" onclick="subscribe()" value="Subscribe">-->
-<!--                    <input type="hidden" name="form_name" value="subscribe_form">-->
                     <input type="submit" value="Subscribe">
                 </form>
             </div>
@@ -60,9 +54,6 @@
             <div class="container">
                 <h3>Who are we?</h3>
                 {{ about.description|linebreaks}}
-            
-               
-               
             </div>
         </section>
         <section>
@@ -70,7 +61,6 @@
                 <h3>Few words from our Director</h3>
             </div>
             <div>
-<!--                <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY?mute=1"></iframe>-->
             <iframe src="https://www.youtube.com/embed/7J7BSxgby2g" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
              </div>
@@ -177,8 +167,7 @@
                 <h3>Get in touch with us</h3>
                 <div class="row">
                     <div class="card" >
-                        <form  method="post" id="message-form">
-                            {% csrf_token %}
+                        <form  id="message-form">
                             <label for="name">Name</label><br>
                             <input type="text" id = "name" name="name"><br>
                             <label for="email">Email</label><br>
@@ -188,7 +177,6 @@
                             <label for="message">Message</label><br>
                             <textarea name="message" id="message" cols="30" rows="10"></textarea>
                             <br>
-                            <input type="hidden" name="form_name" value="message_form">
                             <input type="submit" value="SUBMIT">
                         </form>
                     </div>
