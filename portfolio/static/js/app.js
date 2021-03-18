@@ -79,13 +79,7 @@ const csrftoken = getCookie('csrftoken');
 function callAjax(id){
 
     let form_element = $(id);
-    let url_pattern = "";
-    if (id === "#subscribe-form"){
-        url_pattern = "subscribe";
-    }
-    else if (id === "#message-form"){
-        url_pattern = "message";
-    }
+    let url_pattern = form_element[0].getAttribute("data-action");
 
     $.ajax({
         url: url_pattern,

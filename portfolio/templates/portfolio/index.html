@@ -43,7 +43,7 @@
         <section id="newsletter"  class="background-color-blue">
             <div class="container" >
                 <h3>Subscribe to our news letter</h3>
-                <form id="subscribe-form">
+                <form id="subscribe-form" data-action="{% url 'subscribe' %}">
                     <input name = "email" id = "subscribe-email" type="email" required placeholder="Enter Email">
                     <input type="submit" value="Subscribe">
                 </form>
@@ -134,21 +134,10 @@
                 </div>
             </div>
         </section>
-        <section id="clients"  class="background-color-blue"rt>
+        <section id="clients"  class="background-color-blue">
             <div class="container">
                 <h3>Our Clients</h3>
                 <div class="slick-slider autoplay">
-<!--                    {% for client in clients %}-->
-<!--                        {% if forloop.first %}<div class = "row">{% endif %}-->
-<!--                            <div class="card">-->
-<!--                                <figure>-->
-<!--                                    <img src="{{ client.image.url }}" alt="road image" height="auto" width="100%">-->
-<!--                                </figure>-->
-<!--                                <p>{{client.title}}</p>-->
-<!--                            </div>-->
-<!--                        {% if forloop.counter|divisibleby:3 %}</div> <div class="row"> {% endif %}-->
-<!--                        {% if forloop.last%}</div>{% endif %}-->
-<!--                    {% endfor %}-->
                     {% for client in clients %}
                         <div class="item">
                             <figure>
@@ -167,7 +156,7 @@
                 <h3>Get in touch with us</h3>
                 <div class="row">
                     <div class="card" >
-                        <form  id="message-form">
+                        <form  id="message-form" data-action="{% url 'message' %}">
                             <label for="name">Name</label><br>
                             <input type="text" id = "name" name="name"><br>
                             <label for="email">Email</label><br>
