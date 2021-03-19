@@ -1,11 +1,10 @@
-from django.http import JsonResponse, HttpResponse
+import json
+from django.http import JsonResponse, HttpResponse, QueryDict
 from django.shortcuts import render
 from .forms import MessageForm, SubscriberForm
-from django.views.generic import TemplateView
 from django.core.mail import EmailMultiAlternatives
 from portfolio_project.settings import EMAIL_HOST_USER
 from django.template.loader import get_template
-from django.template import Context
 from .models import ContactDetail, Service, Project, Client, About, Subscriber
 
 
@@ -24,25 +23,33 @@ def index(request):
 
 def subscribe_view(request):
 
-    if request.method == 'POST' and request.is_ajax():
-        form = SubscriberForm(request.POST)
+    if request.method == 'POST':
+
+        # get data sent in body of POST request and convert it into python dictionary
+        data = json.loads(request.body)
+        form = SubscriberForm(data)
+
         if form.is_valid():
-            if not Subscriber.objects.filter(email=request.POST['email']).exists():
+            if not Subscriber.objects.filter(email=data['email']).exists():
                 form.save()
                 send_mail_to_subscriber(form)
-                return JsonResponse({'success': 'true', 'message': 'You are subscribed'})
+                return JsonResponse({"success": "true", "message": "You are subscribed"})
             else:
-                return JsonResponse({'success': "false", 'message': 'Already subscribed'})
+
+                return JsonResponse({"success": "false", "message": "Already subscribed"})
         else:
-            return JsonResponse({'success': 'false', 'message': 'Invalid email.'})
+            return JsonResponse({"success": "false", "message": "Invalid email."})
     else:
-        return HttpResponse("<h1>Your request can not be supported. STATUS CODE = 404</h1>")
+        return HttpResponse( "<h1>Your request can not be supported. STATUS CODE = 404</h1>")
 
 
 def message_view(request):
 
-    if request.method == 'POST' and request.is_ajax():
-        form = MessageForm(request.POST)
+    if request.method == 'POST':
+
+        # get data sent in body of POST request and convert it into python dictionary
+        data = json.loads(request.body)
+        form = MessageForm(data)
         if form.is_valid():
             s = form.save()
             return JsonResponse({'success': 'true', 'message': "You'll be contacted soon."})
@@ -60,3 +67,4 @@ def send_mail_to_subscriber(form):
     msg = EmailMultiAlternatives(subject, text_content, EMAIL_HOST_USER, [form.cleaned_data['email']])
     msg.attach_alternative(html_content, "text/html")
     msg.send()
+

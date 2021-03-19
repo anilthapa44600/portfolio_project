@@ -48,12 +48,22 @@ $(document).ready(function(){
 
 document.getElementById('subscribe-form').addEventListener("submit", function(event){
     event.preventDefault();
-    callAjax("#subscribe-form");
+    console.log('in subscribe-form')
+
+    let data = {'email': this.elements[0].value}
+    callAjax(this, data);
 });
 
 document.getElementById('message-form').addEventListener("submit", function(event){
     event.preventDefault();
-    callAjax("#message-form");
+    console.log('in message-form')
+    let data = {'name': this.elements[0].value,
+                'email': this.elements[1].value,
+                'phone': this.elements[2].value,
+                'message': this.elements[3].value
+    }
+    callAjax(this, data);
+
 });
 
 
@@ -76,35 +86,30 @@ const csrftoken = getCookie('csrftoken');
 
 
 //ajax code for submitting form data to server
-function callAjax(id){
+function callAjax(formObject, data){
+    let url_pattern = formObject.getAttribute('data-action')
 
-    let form_element = $(id);
-    let url_pattern = form_element[0].getAttribute("data-action");
-
-    $.ajax({
-        url: url_pattern,
-        type: 'POST', //request method type
-        data: form_element.serialize(), //data to be sent to server
-        dataType: 'json', // type of data expected from server
-        headers: { 'X-CSRFToken': csrftoken},
-        success: function(data){
-
-            if( id === "#subscribe-form"){
-                clearInputField(['#subscribe-email']);
-            }else if(id === "#message-form"){
-               clearInputField(['#name', '#email', '#phone', '#message']);
-            }
-            parameterList = getToastParameter(data);
-            console.log(parameterList[0]);
-
-            showToast(parameterList[0], parameterList[1]);
-
+    fetch(url_pattern, {
+        method: 'POST',
+        headers:{
+            'Accept': 'application/json', //datatype expected from server
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json', //type of data sent to server
+            'X-CSRFToken': csrftoken,
         },
-        failure: function(err){
-            console.log("An error occurred.");
-            showToast("<p style:'font-size:24px;'>An error occurred.</p>", "error");
-        }
-    });
+        body:JSON.stringify(data)
+    })
+    .then((res) => res.json())
+    .then((data) =>{
+        parameterList = getToastParameter(data);
+        showToast(parameterList[0], parameterList[1]);
+    })
+    .catch((err) => {
+        console.log(err)
+         showToast("<p style:'font-size:24px;'>An error occurred.</p>", "error");
+        })
+
+    formObject.reset()
 }
 
 function getToastParameter(data){
